@@ -3,7 +3,7 @@ title: DingTalk Developer Blog
 header-img: img/home-bg.jpg
 email: yien_yye@alibaba-inc.com
 description: "钉钉开放平台技术博客"
-baseurl: ""
+baseurl: "/startbootstrap-clean-blog-jekyll"
 url: "http://open.dingtalk.com"
 # twitter_username: SBootstrap
 # github_username:  davidtmiller
