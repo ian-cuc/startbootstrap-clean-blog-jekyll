@@ -1,0 +1,25 @@
+---
+layout:     post
+title:      fragment切换时生命周期的变化
+subtitle:   "变化"
+date:       2015-10-20 20:18:00
+author:     "ian"
+header-img: "img/post-bg-06.jpg"
+---
+
+假设有两个fragment，一个是A,一个是B
+
+1.在A被add之后，再add  B，
+
+A的生命周期不会被调用，而B将执行正常的生命周期
+
+
+2.在A被add之后，再B replace A
+
+假如把FragmentTransaction加到回退栈里面，AA将执行到onDestoryView方法
+如果不加，A将直接 onDetach
+
+3.A被hide，再add B
+A的生命周期不会被调用，而B将执行正常的生命周期
+
+和1的区别在于3会有A的退出动画，1没有
