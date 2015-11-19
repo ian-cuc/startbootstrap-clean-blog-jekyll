@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      整理Ruby相关的各种概念（rvm, gem, bundle, rake, rails等）
-subtitle:   ""
+subtitle:   "Ruby"
 date:       2015-11-19 5:34:00
 author:     "ian"
 header-img: "img/post-bg-03.jpg"
