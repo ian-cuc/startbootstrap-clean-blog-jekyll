@@ -10,7 +10,9 @@ url: "www.yinyien.com"
 # facebook_username:  IronSummitMedia
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet
+redcarpet: 
+    extensions: ["fenced_code_blocks", "tables", "highlight"]
 highlighter: pygments
 permalink: pretty
 paginate: 5
