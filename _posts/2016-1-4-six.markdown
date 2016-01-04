@@ -1,0 +1,71 @@
+---
+layout:     post
+title:      生活本来没有目的
+subtitle:   "只是因为你在这里"
+date:       2015-09-07 12:00:00
+author:     "ian"
+header-img: "img/post-bg-04.jpg"
+---
+
+
+#HashMap两种遍历方式的比较
+
+###第一种方式：
+通过keySet()方式遍历
+```java
+       HashMap hashmap = new HashMap();
+       for (int i = 0; i < 10000000; i++ ) {
+       hashmap.put("" +i, "thanks" + i);
+       }
+       long bs = Calendar.getInstance().getTimeInMillis();
+       Iterator iterator = hashmap.keySet().iterator();
+       while (iterator.hasNext()) {
+           Object key1 =iterator.next();
+           Object value1 = hashmap.get(key1);
+       }
+```
+
+###第二种方式：
+
+通过entrySet()方式遍历
+
+```java
+        HashMap hashmap1 = new HashMap();
+        for (int i = 0; i < 10000000; i++ ) {
+            hashmap1.put("" +i, "thanks" + i);
+        }
+        long bs1 = Calendar.getInstance().getTimeInMillis();
+        java.util.Iterator it = hashmap1.entrySet().iterator();
+        while (it.hasNext()){
+            java.util.Map.Entry entry = (java.util.Map.Entry) it.next();
+            Object key2 = entry.getKey();
+            Object value2 = entry.getValue();
+        }
+```
+
+这两种方式到底哪种快呢？通过查看HashMap源代码可以发现，调用KeyIterator.next()等效于EntryIterator.next().getKey()
+
+但是在获取value的时候，HashMap.get(KeyIterator.next())需要进行一次hash，所以耗时比直接从EntryIterator.next().getValue()要慢。
+
+```java
+    private final class KeyIterator extends HashIterator<K> {
+        public K next() {
+            return nextEntry().getKey();
+        }
+    }
+
+    private final class EntryIterator extends HashIterator<Map.Entry<K,V>> {
+        public Map.Entry<K,V> next() {
+            return nextEntry();
+        }
+    }
+```
+
+
+###结论：
+
+1.假如只需要遍历Key的话，两种方式速度上实现其实是一样的
+
+2.假如需要同时遍历Key和Value的话，推荐用通过entrySet()
+
+
