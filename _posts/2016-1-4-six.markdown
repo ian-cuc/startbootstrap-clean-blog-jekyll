@@ -1,8 +1,8 @@
 ---
 layout:     post
-title:      生活本来没有目的
-subtitle:   "只是因为你在这里"
-date:       2015-09-07 12:00:00
+title:      HashMap两种遍历方式的比较
+subtitle:   "java"
+date:       2016-01-04 12:00:00
 author:     "ian"
 header-img: "img/post-bg-04.jpg"
 ---
@@ -61,6 +61,40 @@ header-img: "img/post-bg-04.jpg"
     }
 ```
 
+
+
+为了放心，我还通过测试代码对两种方式进行测试，测试用例如下:
+
+```java
+       HashMap hashmap = new HashMap();
+       for (int i = 0; i < 10000000; i++ ) {
+       hashmap.put("" +i, "thanks" + i);
+       }
+       long bs = Calendar.getInstance().getTimeInMillis();
+       Iterator iterator = hashmap.keySet().iterator();
+       while (iterator.hasNext()) {
+           Object key1 =iterator.next();
+           Object value1 = hashmap.get(key1);
+       }
+        System.out.println();
+        System.out.println("keyset:");
+       System.out.println( Calendar.getInstance().getTimeInMillis() - bs);
+
+        HashMap hashmap1 = new HashMap();
+        for (int i = 0; i < 10000000; i++ ) {
+            hashmap1.put("" +i, "thanks" + i);
+        }
+        long bs1 = Calendar.getInstance().getTimeInMillis();
+        java.util.Iterator it = hashmap1.entrySet().iterator();
+        while (it.hasNext()){
+            java.util.Map.Entry entry = (java.util.Map.Entry) it.next();
+            Object key2 = entry.getKey();
+            Object value2 = entry.getValue();
+        }
+        System.out.println();
+        System.out.println("keyEntry");
+        System.out.println(Calendar.getInstance().getTimeInMillis() - bs1);
+```
 
 ###结论：
 
