@@ -46,7 +46,7 @@ header-img: "img/post-bg-04.jpg"
 
 这两种方式到底哪种快呢？通过查看HashMap源代码可以发现，调用KeyIterator.next()等效于EntryIterator.next().getKey()
 
-但是在获取value的时候，HashMap.get(KeyIterator.next())需要进行一次hash，所以耗时比直接从EntryIterator.next().getValue()要慢。
+但是在获取value的时候，HashMap.get(KeyIterator.next())需要进行一次hash，所以耗时比直接从EntryIterator.next().getValue()要多。
 
 ```java
     private final class KeyIterator extends HashIterator<K> {
@@ -64,7 +64,7 @@ header-img: "img/post-bg-04.jpg"
 
 
 
-为了放心，我还通过测试代码对两种方式进行测试，测试用例如下:
+实践出真知，通过测试代码对两种方式的耗时进行比较，果然是遍历keySet()耗时更久。测试用例如下:
 
 ```java
        HashMap hashmap = new HashMap();
@@ -99,7 +99,7 @@ header-img: "img/post-bg-04.jpg"
 
 ###结论：
 
-1.假如只需要遍历Key的话，两种方式速度上实现其实是一样的
+1.假如只需要遍历Key的话，因为实现没有太大区别，所以两种方式速度上实现其实是差不多的
 
 2.假如需要同时遍历Key和Value的话，推荐用通过entrySet()
 
