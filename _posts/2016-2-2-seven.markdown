@@ -1,0 +1,10 @@
+---
+layout:     post
+title:      Radiohead
+subtitle:   "音乐"
+date:       2016-02-02 12:00:00
+author:     "ian"
+header-img: "img/post-bg-04.jpg"
+---
+
+我是如此的喜欢RadioHead，在某种程度上，他们的音乐时时刻刻激发着我内心的忧郁，让我觉得一切都是冷静的，一切都是没有意义的，至于我们为什么存在，谁也不知道，也不需要知道。
