@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      fragment切换时生命周期的变化
-subtitle:   "变化"
+subtitle:   "Android"
 date:       2015-10-20 20:18:00
 author:     "ian"
 header-img: "img/post-bg-06.jpg"
